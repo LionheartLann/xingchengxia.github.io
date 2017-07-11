@@ -50,4 +50,29 @@ int maxProfit(int* prices, int pricesSize) {
 }
 ```
 
+# Solution II
+This solution is the implement of editorial solution, which maintains one pointer to update the profit  by comparing current price to low_price.
+```
+int maxProfit(int* prices, int pricesSize) {
+    int max = 0;
+    int profit = 0;
+    int low_price = prices[0];
+    if(pricesSize<2){
+        return 0;
+    }
+    for(int i = 0; i<= pricesSize -1; i++){
+        if(*prices < low_price){
+            low_price = *prices;
+        }else{
+            profit = *prices - low_price;
+            if(max<profit){
+                max=profit;
+            }
+        }
+        prices = prices + 1;
+    }
+    return max;
+}
+```
+
 [Best Time to Buy and Sell Stock - LeetCode](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/#/description)
