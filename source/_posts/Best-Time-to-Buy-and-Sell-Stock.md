@@ -21,6 +21,7 @@ If you were only permitted to complete at most one transaction (ie, buy one and 
 Basically, assign two pointers which point to head and head->next, the left one p1 aims at the smaller price, while the right one p2 moves forward to find the higher price. if p1 > p2, move both pointers forward. By comparing the profit each move (when p1 < p2), we can find the maximum profit.
 * Time: O(n)
 * Space: O(1)
+## Note
 * At the aspect of C, `int* p2 = p1+1;`  moves the pointer to the next element of the array. The 1 is in fact the `sizeof(int)`.  
 ```
 int maxProfit(int* prices, int pricesSize) {
