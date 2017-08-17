@@ -253,6 +253,135 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://xingchengxia.gihub.io/2017/08/17/Linux-I-O-Redirections/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingcheng Xia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Let's LeetCode!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/17/Linux-I-O-Redirections/" itemprop="url">Linux I/O Redirections</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-17T12:06:15Z">
+                2017-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Linux-I-O-Redirections-—-Stdin-Stdout-Stderr"><a href="#Linux-I-O-Redirections-—-Stdin-Stdout-Stderr" class="headerlink" title="Linux I/O Redirections — Stdin Stdout Stderr"></a>Linux I/O Redirections — Stdin Stdout Stderr</h1><p>#lannister</p>
+<h2 id="standard-output-amp-standard-error-output"><a href="#standard-output-amp-standard-error-output" class="headerlink" title="standard output &amp; standard error output"></a>standard output &amp; standard error output</h2><ul>
+<li>stdin: code:0, &lt; or &lt;&lt;</li>
+<li>stdout: code:1, &gt; (overwrite file) or &gt;&gt; (append)<br>(also 1&gt;, 1&gt;&gt;)</li>
+<li>stderr: code:2, 2&gt; (overwrite file) or 2&gt;&gt;(append)</li>
+</ul>
+<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><ul>
+<li><p>Save the output on screen to a file.<br><code>ll / &gt; log</code><br>if the file <code>log</code> does not exists, the system will create the file;<br>else the system will overwrite the file with the output of your command <code>ll /</code> </p>
+</li>
+<li><p>save the result of stdout and stderr respectively<br><code>find /etc -name redis.cnf &gt; stdout_right 2&gt; stderr_error</code></p>
+</li>
+<li><p>the <code>/dev/null</code>, when you want to ignore the error output<br><code>find /home -name something 2&gt; /dev/null</code></p>
+</li>
+<li><p>save stdout and stderr to the same file<br>this operation require a special way to write commands:<br><code>find /home -name .bashrc &gt; result 2&gt;&amp;1</code><br>or  <code>find /home -name .bashrc &amp;&gt; result</code><br><code>2&gt;&amp;</code> and <code>&amp;&gt;</code> without space in between<br><code>2&gt;&amp; 1</code> is ok</p>
+</li>
+<li><p><code>stdin</code>: &lt; &amp; &lt;&lt;<br>replace keyboard input with the content of a file:<br><code>cat &gt; catfile &lt; ~/.bashrc</code><br>ends your input with <code>&lt;&lt;</code> :<br><code>cat &gt; catfile &lt;&lt; &quot;eof(or anything you like)&quot;</code></p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://xingchengxia.gihub.io/2017/07/15/Covariance/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -879,7 +1008,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
