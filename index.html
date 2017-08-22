@@ -345,14 +345,15 @@
 <h3 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h3><p>完备的JS解释器</p>
 <ul>
 <li>CRUD<br><code>use dbname</code><br><code>db.insert(post)</code><br><code>db.find()</code> <code>db.findOne()</code><br><code>db.update({title:”My blog post”}, post)</code><br><code>db.remove({title:”My blog post”})</code></li>
-<li><code>mongo some-host:30000/myDB</code> 连接指定db</li>
-<li><p>启动时不连接: <code>mongo —nodb</code>，启动后</p>
+<li><p><code>mongo some-host:30000/myDB</code> 连接指定db<br>启动时不连接: <code>mongo —nodb</code>，启动后</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">conn = new Mongo(some-host:30000)</div><div class="line">db = conn.getDB(&apos;myDB&apos;)</div></pre></td></tr></table></figure>
 </li>
 <li><p>执行JS：<code>mongo *.js</code> <code>load(“your.js”)</code></p>
 </li>
 <li><code>.mongorc.js</code> －－启动时自动加载<br>可用于创建全局变量、移除较危险的操作（防误操作）<br>great feature: <code>EDITOR=“/usr/local/bin/vim”</code>，可放入<code>~/.mongorc.js</code>。调用<code>edit something</code> 即可<br><code>db.dropDatabase = Db.prototype.dropDatabase=no;</code><br><code>DBCollection.prototype.drop=no;</code><br><code>DBCollection.prototype.dropIndex=no;</code></li>
-<li>集合命名<br>获取集合：<code>db.getCollection(“version”)</code><br>子集合 <code>db.name &lt;==&gt; db[“name”]</code><h2 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h2><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3></li>
+<li>集合命名<br>获取集合：<code>db.getCollection(“version”)</code><br>子集合 <code>db.name &lt;==&gt; db[“name”]</code></li>
+</ul>
+<h2 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h2><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><ul>
 <li>批量插入 <code>batchInsert</code> ，同<code>Insert()</code>，接受数组变量</li>
 <li>单个文档 size &lt; 16M</li>
 <li>校验<h3 id="删除文档"><a href="#删除文档" class="headerlink" title="删除文档"></a>删除文档</h3><code>db.foo.remove()</code> 删除所有文档，<code>db.foo.drop()</code>删除集合（fast）<h3 id="更新文档"><a href="#更新文档" class="headerlink" title="更新文档"></a>更新文档</h3>使用<code>_id</code>指定文档，避免出现重复</li>
