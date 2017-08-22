@@ -1,0 +1,721 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="MongoDB: The Definitive Guide notes#lannister/notes Introduction document-oriented,  不采用关系型为了更好的扩展性 易于横向扩展，在多台机器间分割，自动处理跨集群的数据和负载 索引(indexing)：二级索引／多种快速查询／唯一索引／复合索引／地理空间索引／全文索引 聚合(aggregation)： aggreg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB notes">
+<meta property="og:url" content="http://xingchengxia.gihub.io/2017/08/22/MongoDB-notes/index.html">
+<meta property="og:site_name" content="Let&#39;s LeetCode!">
+<meta property="og:description" content="MongoDB: The Definitive Guide notes#lannister/notes Introduction document-oriented,  不采用关系型为了更好的扩展性 易于横向扩展，在多台机器间分割，自动处理跨集群的数据和负载 索引(indexing)：二级索引／多种快速查询／唯一索引／复合索引／地理空间索引／全文索引 聚合(aggregation)： aggreg">
+<meta property="og:updated_time" content="2017-08-22T03:59:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MongoDB notes">
+<meta name="twitter:description" content="MongoDB: The Definitive Guide notes#lannister/notes Introduction document-oriented,  不采用关系型为了更好的扩展性 易于横向扩展，在多台机器间分割，自动处理跨集群的数据和负载 索引(indexing)：二级索引／多种快速查询／唯一索引／复合索引／地理空间索引／全文索引 聚合(aggregation)： aggreg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xingchengxia.gihub.io/2017/08/22/MongoDB-notes/"/>
+
+
+
+
+
+  <title>MongoDB notes | Let's LeetCode!</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Let's LeetCode!</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Just for fun</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://xingchengxia.gihub.io/2017/08/22/MongoDB-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingcheng Xia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Let's LeetCode!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MongoDB notes</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-22T11:58:49Z">
+                2017-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="MongoDB-The-Definitive-Guide-notes"><a href="#MongoDB-The-Definitive-Guide-notes" class="headerlink" title="MongoDB: The Definitive Guide notes"></a>MongoDB: The Definitive Guide notes</h1><p>#lannister/notes</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
+<li>document-oriented,  不采用关系型为了更好的扩展性</li>
+<li>易于横向扩展，在多台机器间分割，自动处理跨集群的数据和负载</li>
+<li>索引(indexing)：二级索引／多种快速查询／唯一索引／复合索引／地理空间索引／全文索引</li>
+<li>聚合(aggregation)： aggregation pipeline  </li>
+<li>特殊集合类型：时间有限／空间有限</li>
+<li>file storage</li>
+<li>不具备join／事务</li>
+<li>dynamic padding 额外空间换取稳定性能</li>
+<li>将处理和逻辑交给client</li>
+</ul>
+<h2 id="Fundamental"><a href="#Fundamental" class="headerlink" title="Fundamental"></a>Fundamental</h2><h3 id="Document-amp-amp-Collection-amp-amp-db"><a href="#Document-amp-amp-Collection-amp-amp-db" class="headerlink" title="Document &amp;&amp; Collection &amp;&amp; db"></a>Document &amp;&amp; Collection &amp;&amp; db</h3><ul>
+<li>_id unique, 相当于一行</li>
+<li>一个键值对的有序集，区分类型、大小写</li>
+<li>不能有重复的键</li>
+<li>collection相当于一张表</li>
+<li>保留数据库：admin用户权限/ local /config 分片<br>启动：<code>mongo</code> ，同时启动一个http服务器<code>port 28017</code></li>
+<li>数据类型<br>null／布尔 ／ 数值（64位 float）NumberInt(“3”) NumberLong(“3”)／字符串／日期 new Date() 毫秒数／数组／RE _foobar_i ／内嵌文档／对象ID ObjectId() ／二进制／JS代码</li>
+<li>_id组成: 时间戳0123|机器456|PID 78 |计数器 9 10 11</li>
+</ul>
+<h3 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h3><p>完备的JS解释器</p>
+<ul>
+<li>CRUD<br><code>use dbname</code><br><code>db.insert(post)</code><br><code>db.find()</code> <code>db.findOne()</code><br><code>db.update({title:”My blog post”}, post)</code><br><code>db.remove({title:”My blog post”})</code></li>
+<li><code>mongo some-host:30000/myDB</code> 连接指定db</li>
+<li><p>启动时不连接: <code>mongo —nodb</code>，启动后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">conn = new Mongo(some-host:30000)</div><div class="line">db = conn.getDB(&apos;myDB&apos;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行JS：<code>mongo *.js</code> <code>load(“your.js”)</code></p>
+</li>
+<li><code>.mongorc.js</code> －－启动时自动加载<br>可用于创建全局变量、移除较危险的操作（防误操作）<br>great feature: <code>EDITOR=“/usr/local/bin/vim”</code>，可放入<code>~/.mongorc.js</code>。调用<code>edit something</code> 即可<br><code>db.dropDatabase = Db.prototype.dropDatabase=no;</code><br><code>DBCollection.prototype.drop=no;</code><br><code>DBCollection.prototype.dropIndex=no;</code></li>
+<li>集合命名<br>获取集合：<code>db.getCollection(“version”)</code><br>子集合 <code>db.name &lt;==&gt; db[“name”]</code><h2 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h2><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3></li>
+<li>批量插入 <code>batchInsert</code> ，同<code>Insert()</code>，接受数组变量</li>
+<li>单个文档 size &lt; 16M</li>
+<li>校验<h3 id="删除文档"><a href="#删除文档" class="headerlink" title="删除文档"></a>删除文档</h3><code>db.foo.remove()</code> 删除所有文档，<code>db.foo.drop()</code>删除集合（fast）<h3 id="更新文档"><a href="#更新文档" class="headerlink" title="更新文档"></a>更新文档</h3>使用<code>_id</code>指定文档，避免出现重复</li>
+<li>修改器（update modifier）<br>原子性<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$inc</div><div class="line">$set/ $unset</div><div class="line">$push</div><div class="line">$each</div><div class="line">$slice</div><div class="line">$sort</div><div class="line">$addToSet</div><div class="line">$pop $pull</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>upsert<br>getLastError<br>findAndModify</p>
+<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><p>查询name为xx，age为27的人：<br><code>db.users.find({&quot;name&quot;:&quot;xx&quot;, &quot;age&quot;:27})</code><br>select 返回需要的列, find的第二个参数指定：<br><code>db.users.find({},{&quot;gender&quot;:1,&quot;addr&quot;:0})</code></p>
+<h3 id="查询条件"><a href="#查询条件" class="headerlink" title="查询条件"></a>查询条件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$lt $lte $gt $gte $ne </div><div class="line">$in $nin 类似mysql in &#123;&quot;something&quot;:&#123;&quot;$in&quot;:[]&#125;&#125;</div><div class="line">$or 多个键 &#123;&quot;$or&quot;:[&#123;&#125;,&#123;&#125;]&#125;</div><div class="line">$mod 取模运算 </div><div class="line">$not 常与re联合使用</div><div class="line">$exists null</div></pre></td></tr></table></figure>
+<h3 id="regular-expression"><a href="#regular-expression" class="headerlink" title="regular expression"></a>regular expression</h3><p>模糊匹配<br><code>/rtext/i</code><br>＊前缀re可创建索引</p>
+<h3 id="查询数组"><a href="#查询数组" class="headerlink" title="查询数组"></a>查询数组</h3><p>查询指定位置元素<br>查询指定长度数组<br>返回一个匹配的数组元素<br>数组的范围查询</p>
+<h3 id="查询内嵌文档"><a href="#查询内嵌文档" class="headerlink" title="查询内嵌文档"></a>查询内嵌文档</h3><h3 id="where"><a href="#where" class="headerlink" title="$where"></a>$where</h3><p>借助JavaScript 完成<br>不能使用索引<br>把每个文档转换为BSON对象，慢</p>
+<h3 id="服务端脚步"><a href="#服务端脚步" class="headerlink" title="服务端脚步"></a>服务端脚步</h3><p>防注入／作用域 传递</p>
+<h3 id="游标"><a href="#游标" class="headerlink" title="游标"></a>游标</h3><h3 id="limit、skip、sort"><a href="#limit、skip、sort" class="headerlink" title="limit、skip、sort"></a>limit、skip、sort</h3><p>tips：减少扫描行数<br>一个思想：返回集合中的一个随机文档</p>
+<h3 id="wrapped-query-封装查询"><a href="#wrapped-query-封装查询" class="headerlink" title="wrapped query 封装查询"></a>wrapped query 封装查询</h3><h3 id="runCommand：接受一个命令文档："><a href="#runCommand：接受一个命令文档：" class="headerlink" title="runCommand：接受一个命令文档："></a>runCommand：接受一个命令文档：</h3><p><code>db.runCommand({getLastError:1})</code></p>
+<h2 id="Indexing"><a href="#Indexing" class="headerlink" title="Indexing"></a>Indexing</h2><p>首先建立测试数据库：<br><code>for (i=0; i&lt;10000000; i++) { db.users.insert({&quot;i&quot;:i, &quot;name&quot;:&quot;tk&quot;+i, &quot;age&quot;:Math.floor(Math.random()*120), &quot;created&quot;:new Date()}); }</code></p>
+<h3 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h3><ul>
+<li>唯一索引：确保Doc指定键有唯一值，如<code>_id</code>.<br>如果一个Doc没有指定键，将作为<code>null</code>存储。如果在其上建立唯一索引，但又插入多个缺少该键的Doc，将导致插入失败。</li>
+<li>复合唯一索引：组合值唯一</li>
+<li>复合索引(compound index)<br><code>db.users.ensureIndex({”age”:1,“name”:1})</code><br>索引的使用方式取决于查询的类型：</li>
+<li>point query<br><code>db.users.find({&quot;age&quot;:21}).sort({&quot;name&quot;:-1})</code><br>非常高效：直接定位年龄，不需要对结果排序（只需对数据进行逆序遍历即可得到正确的顺序）</li>
+<li>multi-value query<br><code>db.users.find({&quot;age&quot;:{&quot;$gte&quot;:21, &quot;$lte&quot;:30}})</code><br>使用索引的第一个键匹配Doc</li>
+</ul>
+<p><code>db.users.find({&quot;age&quot;:{&quot;$gte&quot;:21, &quot;$lte&quot;:30}}).sort({&quot;name&quot;:1})</code><br>结果集中name是无序的，需要在内存中排序，不如上一个高效</p>
+<h3 id="explain-相当于MySQL-explain"><a href="#explain-相当于MySQL-explain" class="headerlink" title=".explain() 相当于MySQL explain"></a>.explain() 相当于MySQL explain</h3><p><code>db.users.find({}).explain</code></p>
+<ul>
+<li>[x] 结果不一样？没有mills等key<br>Excute with out index:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">db.users.find(&#123;&quot;name&quot; : &quot;tk101&quot;&#125;).explain(&apos;executionStats&apos;)</div><div class="line"></div><div class="line">&quot;executionStats&quot; : &#123;</div><div class="line">		&quot;executionSuccess&quot; : true,</div><div class="line">		&quot;nReturned&quot; : 1,</div><div class="line">		&quot;executionTimeMillis&quot; : 5145,</div><div class="line">		&quot;totalKeysExamined&quot; : 0,</div><div class="line">		&quot;totalDocsExamined&quot; : 10000000,</div><div class="line">		&quot;executionStages&quot; : &#123;</div><div class="line">			&quot;stage&quot; : &quot;COLLSCAN&quot;,</div><div class="line">			&quot;filter&quot; : &#123;</div><div class="line">				&quot;name&quot; : &#123;</div><div class="line">					&quot;$eq&quot; : &quot;tk101&quot;</div><div class="line">				&#125;</div><div class="line">			&#125;,</div><div class="line">			&quot;nReturned&quot; : 1,</div><div class="line">			&quot;executionTimeMillisEstimate&quot; : 4709,</div><div class="line">			&quot;works&quot; : 10000002,</div><div class="line">			&quot;advanced&quot; : 1,</div><div class="line">			&quot;needTime&quot; : 10000000,</div><div class="line">			&quot;needYield&quot; : 0,</div><div class="line">			&quot;saveState&quot; : 78156,</div><div class="line">			&quot;restoreState&quot; : 78156,</div><div class="line">			&quot;isEOF&quot; : 1,</div><div class="line">			&quot;invalidates&quot; : 0,</div><div class="line">			&quot;direction&quot; : &quot;forward&quot;,</div><div class="line">			&quot;docsExamined&quot; : 10000000</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>See Docs: <a href="https://docs.mongodb.com/manual/reference/method/cursor.explain/" target="_blank" rel="external">cursor.explain</a> </p>
+<ul>
+<li><code>{“sortKey&quot; : 1, &quot;queryCriteria&quot; : 1}</code><h3 id="加索引"><a href="#加索引" class="headerlink" title="加索引"></a>加索引</h3><code>db.users.ensureIndex({“name”:1})</code><br>加复合索引<br>使用索引排序非常快，但是必须首先使用索引<br><code>db.users.find().sort({&quot;age&quot;:1,&quot;name&quot;:1})</code></li>
+</ul>
+<p><code>db.users.ensureIndex({”age”:1,“name”:1})</code></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/17/Linux-I-O-Redirections/" rel="next" title="Linux I/O Redirections">
+                <i class="fa fa-chevron-left"></i> Linux I/O Redirections
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div id="sidebar-dimmer"></div>
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Xingcheng Xia" />
+          <p class="site-author-name" itemprop="name">Xingcheng Xia</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MongoDB-The-Definitive-Guide-notes"><span class="nav-number">1.</span> <span class="nav-text">MongoDB: The Definitive Guide notes</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fundamental"><span class="nav-number">1.2.</span> <span class="nav-text">Fundamental</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Document-amp-amp-Collection-amp-amp-db"><span class="nav-number">1.2.1.</span> <span class="nav-text">Document && Collection && db</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Shell"><span class="nav-number">1.2.2.</span> <span class="nav-text">Shell</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CRUD"><span class="nav-number">1.3.</span> <span class="nav-text">CRUD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#插入"><span class="nav-number">1.3.1.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除文档"><span class="nav-number">1.3.2.</span> <span class="nav-text">删除文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新文档"><span class="nav-number">1.3.3.</span> <span class="nav-text">更新文档</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查询"><span class="nav-number">1.4.</span> <span class="nav-text">查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查询条件"><span class="nav-number">1.4.1.</span> <span class="nav-text">查询条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#regular-expression"><span class="nav-number">1.4.2.</span> <span class="nav-text">regular expression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询数组"><span class="nav-number">1.4.3.</span> <span class="nav-text">查询数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询内嵌文档"><span class="nav-number">1.4.4.</span> <span class="nav-text">查询内嵌文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#where"><span class="nav-number">1.4.5.</span> <span class="nav-text">$where</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端脚步"><span class="nav-number">1.4.6.</span> <span class="nav-text">服务端脚步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#游标"><span class="nav-number">1.4.7.</span> <span class="nav-text">游标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#limit、skip、sort"><span class="nav-number">1.4.8.</span> <span class="nav-text">limit、skip、sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wrapped-query-封装查询"><span class="nav-number">1.4.9.</span> <span class="nav-text">wrapped query 封装查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#runCommand：接受一个命令文档："><span class="nav-number">1.4.10.</span> <span class="nav-text">runCommand：接受一个命令文档：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Indexing"><span class="nav-number">1.5.</span> <span class="nav-text">Indexing</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#索引类型"><span class="nav-number">1.5.1.</span> <span class="nav-text">索引类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#explain-相当于MySQL-explain"><span class="nav-number">1.5.2.</span> <span class="nav-text">.explain() 相当于MySQL explain</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#加索引"><span class="nav-number">1.5.3.</span> <span class="nav-text">加索引</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xingcheng Xia</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

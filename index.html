@@ -253,6 +253,183 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://xingchengxia.gihub.io/2017/08/22/MongoDB-notes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xingcheng Xia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Let's LeetCode!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/22/MongoDB-notes/" itemprop="url">MongoDB notes</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-22T11:58:49Z">
+                2017-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="MongoDB-The-Definitive-Guide-notes"><a href="#MongoDB-The-Definitive-Guide-notes" class="headerlink" title="MongoDB: The Definitive Guide notes"></a>MongoDB: The Definitive Guide notes</h1><p>#lannister/notes</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><ul>
+<li>document-oriented,  不采用关系型为了更好的扩展性</li>
+<li>易于横向扩展，在多台机器间分割，自动处理跨集群的数据和负载</li>
+<li>索引(indexing)：二级索引／多种快速查询／唯一索引／复合索引／地理空间索引／全文索引</li>
+<li>聚合(aggregation)： aggregation pipeline  </li>
+<li>特殊集合类型：时间有限／空间有限</li>
+<li>file storage</li>
+<li>不具备join／事务</li>
+<li>dynamic padding 额外空间换取稳定性能</li>
+<li>将处理和逻辑交给client</li>
+</ul>
+<h2 id="Fundamental"><a href="#Fundamental" class="headerlink" title="Fundamental"></a>Fundamental</h2><h3 id="Document-amp-amp-Collection-amp-amp-db"><a href="#Document-amp-amp-Collection-amp-amp-db" class="headerlink" title="Document &amp;&amp; Collection &amp;&amp; db"></a>Document &amp;&amp; Collection &amp;&amp; db</h3><ul>
+<li>_id unique, 相当于一行</li>
+<li>一个键值对的有序集，区分类型、大小写</li>
+<li>不能有重复的键</li>
+<li>collection相当于一张表</li>
+<li>保留数据库：admin用户权限/ local /config 分片<br>启动：<code>mongo</code> ，同时启动一个http服务器<code>port 28017</code></li>
+<li>数据类型<br>null／布尔 ／ 数值（64位 float）NumberInt(“3”) NumberLong(“3”)／字符串／日期 new Date() 毫秒数／数组／RE _foobar_i ／内嵌文档／对象ID ObjectId() ／二进制／JS代码</li>
+<li>_id组成: 时间戳0123|机器456|PID 78 |计数器 9 10 11</li>
+</ul>
+<h3 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h3><p>完备的JS解释器</p>
+<ul>
+<li>CRUD<br><code>use dbname</code><br><code>db.insert(post)</code><br><code>db.find()</code> <code>db.findOne()</code><br><code>db.update({title:”My blog post”}, post)</code><br><code>db.remove({title:”My blog post”})</code></li>
+<li><code>mongo some-host:30000/myDB</code> 连接指定db</li>
+<li><p>启动时不连接: <code>mongo —nodb</code>，启动后</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">conn = new Mongo(some-host:30000)</div><div class="line">db = conn.getDB(&apos;myDB&apos;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行JS：<code>mongo *.js</code> <code>load(“your.js”)</code></p>
+</li>
+<li><code>.mongorc.js</code> －－启动时自动加载<br>可用于创建全局变量、移除较危险的操作（防误操作）<br>great feature: <code>EDITOR=“/usr/local/bin/vim”</code>，可放入<code>~/.mongorc.js</code>。调用<code>edit something</code> 即可<br><code>db.dropDatabase = Db.prototype.dropDatabase=no;</code><br><code>DBCollection.prototype.drop=no;</code><br><code>DBCollection.prototype.dropIndex=no;</code></li>
+<li>集合命名<br>获取集合：<code>db.getCollection(“version”)</code><br>子集合 <code>db.name &lt;==&gt; db[“name”]</code><h2 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h2><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3></li>
+<li>批量插入 <code>batchInsert</code> ，同<code>Insert()</code>，接受数组变量</li>
+<li>单个文档 size &lt; 16M</li>
+<li>校验<h3 id="删除文档"><a href="#删除文档" class="headerlink" title="删除文档"></a>删除文档</h3><code>db.foo.remove()</code> 删除所有文档，<code>db.foo.drop()</code>删除集合（fast）<h3 id="更新文档"><a href="#更新文档" class="headerlink" title="更新文档"></a>更新文档</h3>使用<code>_id</code>指定文档，避免出现重复</li>
+<li>修改器（update modifier）<br>原子性<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$inc</div><div class="line">$set/ $unset</div><div class="line">$push</div><div class="line">$each</div><div class="line">$slice</div><div class="line">$sort</div><div class="line">$addToSet</div><div class="line">$pop $pull</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>upsert<br>getLastError<br>findAndModify</p>
+<h2 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h2><p>查询name为xx，age为27的人：<br><code>db.users.find({&quot;name&quot;:&quot;xx&quot;, &quot;age&quot;:27})</code><br>select 返回需要的列, find的第二个参数指定：<br><code>db.users.find({},{&quot;gender&quot;:1,&quot;addr&quot;:0})</code></p>
+<h3 id="查询条件"><a href="#查询条件" class="headerlink" title="查询条件"></a>查询条件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$lt $lte $gt $gte $ne </div><div class="line">$in $nin 类似mysql in &#123;&quot;something&quot;:&#123;&quot;$in&quot;:[]&#125;&#125;</div><div class="line">$or 多个键 &#123;&quot;$or&quot;:[&#123;&#125;,&#123;&#125;]&#125;</div><div class="line">$mod 取模运算 </div><div class="line">$not 常与re联合使用</div><div class="line">$exists null</div></pre></td></tr></table></figure>
+<h3 id="regular-expression"><a href="#regular-expression" class="headerlink" title="regular expression"></a>regular expression</h3><p>模糊匹配<br><code>/rtext/i</code><br>＊前缀re可创建索引</p>
+<h3 id="查询数组"><a href="#查询数组" class="headerlink" title="查询数组"></a>查询数组</h3><p>查询指定位置元素<br>查询指定长度数组<br>返回一个匹配的数组元素<br>数组的范围查询</p>
+<h3 id="查询内嵌文档"><a href="#查询内嵌文档" class="headerlink" title="查询内嵌文档"></a>查询内嵌文档</h3><h3 id="where"><a href="#where" class="headerlink" title="$where"></a>$where</h3><p>借助JavaScript 完成<br>不能使用索引<br>把每个文档转换为BSON对象，慢</p>
+<h3 id="服务端脚步"><a href="#服务端脚步" class="headerlink" title="服务端脚步"></a>服务端脚步</h3><p>防注入／作用域 传递</p>
+<h3 id="游标"><a href="#游标" class="headerlink" title="游标"></a>游标</h3><h3 id="limit、skip、sort"><a href="#limit、skip、sort" class="headerlink" title="limit、skip、sort"></a>limit、skip、sort</h3><p>tips：减少扫描行数<br>一个思想：返回集合中的一个随机文档</p>
+<h3 id="wrapped-query-封装查询"><a href="#wrapped-query-封装查询" class="headerlink" title="wrapped query 封装查询"></a>wrapped query 封装查询</h3><h3 id="runCommand：接受一个命令文档："><a href="#runCommand：接受一个命令文档：" class="headerlink" title="runCommand：接受一个命令文档："></a>runCommand：接受一个命令文档：</h3><p><code>db.runCommand({getLastError:1})</code></p>
+<h2 id="Indexing"><a href="#Indexing" class="headerlink" title="Indexing"></a>Indexing</h2><p>首先建立测试数据库：<br><code>for (i=0; i&lt;10000000; i++) { db.users.insert({&quot;i&quot;:i, &quot;name&quot;:&quot;tk&quot;+i, &quot;age&quot;:Math.floor(Math.random()*120), &quot;created&quot;:new Date()}); }</code></p>
+<h3 id="索引类型"><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h3><ul>
+<li>唯一索引：确保Doc指定键有唯一值，如<code>_id</code>.<br>如果一个Doc没有指定键，将作为<code>null</code>存储。如果在其上建立唯一索引，但又插入多个缺少该键的Doc，将导致插入失败。</li>
+<li>复合唯一索引：组合值唯一</li>
+<li>复合索引(compound index)<br><code>db.users.ensureIndex({”age”:1,“name”:1})</code><br>索引的使用方式取决于查询的类型：</li>
+<li>point query<br><code>db.users.find({&quot;age&quot;:21}).sort({&quot;name&quot;:-1})</code><br>非常高效：直接定位年龄，不需要对结果排序（只需对数据进行逆序遍历即可得到正确的顺序）</li>
+<li>multi-value query<br><code>db.users.find({&quot;age&quot;:{&quot;$gte&quot;:21, &quot;$lte&quot;:30}})</code><br>使用索引的第一个键匹配Doc</li>
+</ul>
+<p><code>db.users.find({&quot;age&quot;:{&quot;$gte&quot;:21, &quot;$lte&quot;:30}}).sort({&quot;name&quot;:1})</code><br>结果集中name是无序的，需要在内存中排序，不如上一个高效</p>
+<h3 id="explain-相当于MySQL-explain"><a href="#explain-相当于MySQL-explain" class="headerlink" title=".explain() 相当于MySQL explain"></a>.explain() 相当于MySQL explain</h3><p><code>db.users.find({}).explain</code></p>
+<ul>
+<li>[x] 结果不一样？没有mills等key<br>Excute with out index:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">db.users.find(&#123;&quot;name&quot; : &quot;tk101&quot;&#125;).explain(&apos;executionStats&apos;)</div><div class="line"></div><div class="line">&quot;executionStats&quot; : &#123;</div><div class="line">		&quot;executionSuccess&quot; : true,</div><div class="line">		&quot;nReturned&quot; : 1,</div><div class="line">		&quot;executionTimeMillis&quot; : 5145,</div><div class="line">		&quot;totalKeysExamined&quot; : 0,</div><div class="line">		&quot;totalDocsExamined&quot; : 10000000,</div><div class="line">		&quot;executionStages&quot; : &#123;</div><div class="line">			&quot;stage&quot; : &quot;COLLSCAN&quot;,</div><div class="line">			&quot;filter&quot; : &#123;</div><div class="line">				&quot;name&quot; : &#123;</div><div class="line">					&quot;$eq&quot; : &quot;tk101&quot;</div><div class="line">				&#125;</div><div class="line">			&#125;,</div><div class="line">			&quot;nReturned&quot; : 1,</div><div class="line">			&quot;executionTimeMillisEstimate&quot; : 4709,</div><div class="line">			&quot;works&quot; : 10000002,</div><div class="line">			&quot;advanced&quot; : 1,</div><div class="line">			&quot;needTime&quot; : 10000000,</div><div class="line">			&quot;needYield&quot; : 0,</div><div class="line">			&quot;saveState&quot; : 78156,</div><div class="line">			&quot;restoreState&quot; : 78156,</div><div class="line">			&quot;isEOF&quot; : 1,</div><div class="line">			&quot;invalidates&quot; : 0,</div><div class="line">			&quot;direction&quot; : &quot;forward&quot;,</div><div class="line">			&quot;docsExamined&quot; : 10000000</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>See Docs: <a href="https://docs.mongodb.com/manual/reference/method/cursor.explain/" target="_blank" rel="external">cursor.explain</a> </p>
+<ul>
+<li><code>{“sortKey&quot; : 1, &quot;queryCriteria&quot; : 1}</code><h3 id="加索引"><a href="#加索引" class="headerlink" title="加索引"></a>加索引</h3><code>db.users.ensureIndex({“name”:1})</code><br>加复合索引<br>使用索引排序非常快，但是必须首先使用索引<br><code>db.users.find().sort({&quot;age&quot;:1,&quot;name&quot;:1})</code></li>
+</ul>
+<p><code>db.users.ensureIndex({”age”:1,“name”:1})</code></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://xingchengxia.gihub.io/2017/08/17/Linux-I-O-Redirections/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1008,7 +1185,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
