@@ -384,9 +384,8 @@
 </ul>
 <p>See Docs: <a href="https://docs.mongodb.com/manual/reference/method/cursor.explain/" target="_blank" rel="external">cursor.explain</a> </p>
 <ul>
-<li><code>{“sortKey&quot; : 1, &quot;queryCriteria&quot; : 1}</code><h3 id="加索引"><a href="#加索引" class="headerlink" title="加索引"></a>加索引</h3><code>db.users.ensureIndex({“name”:1})</code><br>加复合索引<br>使用索引排序非常快，但是必须首先使用索引<br><code>db.users.find().sort({&quot;age&quot;:1,&quot;name&quot;:1})</code></li>
+<li><code>{“sortKey&quot; : 1, &quot;queryCriteria&quot; : 1}</code><h3 id="加索引"><a href="#加索引" class="headerlink" title="加索引"></a>加索引</h3><code>db.users.ensureIndex({“name”:1})</code><br>加复合索引<br>使用索引排序非常快，但是必须首先使用索引<br><code>db.users.find().sort({&quot;age&quot;:1,&quot;name&quot;:1})</code><br><code>db.users.ensureIndex({”age”:1,“name”:1})</code></li>
 </ul>
-<p><code>db.users.ensureIndex({”age”:1,“name”:1})</code></p>
 
           
         
