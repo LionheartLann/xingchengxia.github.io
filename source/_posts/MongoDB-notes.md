@@ -37,7 +37,7 @@ null／布尔 ／ 数值（64位 float）NumberInt(“3”) NumberLong(“3”)�
 `db.update({title:”My blog post”}, post)`
 `db.remove({title:”My blog post”})`
 * `mongo some-host:30000/myDB` 连接指定db
-* 启动时不连接: `mongo —nodb`，启动后
+启动时不连接: `mongo —nodb`，启动后
 ```
 conn = new Mongo(some-host:30000)
 db = conn.getDB('myDB')
@@ -52,7 +52,10 @@ db = conn.getDB('myDB')
 * 集合命名
 获取集合：`db.getCollection(“version”)`
 子集合 `db.name <==> db[“name”]`
+
+
 ## CRUD
+
 ### 插入
 * 批量插入 `batchInsert` ，同`Insert()`，接受数组变量
 * 单个文档 size < 16M
@@ -178,7 +181,6 @@ See Docs: [cursor.explain](https://docs.mongodb.com/manual/reference/method/curs
 加复合索引
 使用索引排序非常快，但是必须首先使用索引
 `db.users.find().sort({"age":1,"name":1})`
-
 `db.users.ensureIndex({”age”:1,“name”:1})`
 
 
