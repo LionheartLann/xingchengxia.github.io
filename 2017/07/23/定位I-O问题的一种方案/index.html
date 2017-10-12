@@ -93,16 +93,16 @@
 
 
 
-<meta name="description" content="Best Time to Buy and Sell Stock(121)#LeetCode ProblemSay you have an array for which the ith element is the price of a given stock on day i. If you were only permitted to complete at most one transact">
+<meta name="description" content="Monitor disk io on linux server with iotop and cronRecently my server was giving notifications of disk io activity rising above a certain threshold at regular intervals. My first guess was that some c">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Best Time to Buy and Sell Stock">
-<meta property="og:url" content="http://xingchengxia.gihub.io/2017/07/11/Best-Time-to-Buy-and-Sell-Stock/index.html">
+<meta property="og:title" content="定位I&#x2F;O问题的一种方案">
+<meta property="og:url" content="http://xingchengxia.gihub.io/2017/07/23/定位I-O问题的一种方案/index.html">
 <meta property="og:site_name" content="Let&#39;s LeetCode!">
-<meta property="og:description" content="Best Time to Buy and Sell Stock(121)#LeetCode ProblemSay you have an array for which the ith element is the price of a given stock on day i. If you were only permitted to complete at most one transact">
-<meta property="og:updated_time" content="2017-07-11T04:28:57.000Z">
+<meta property="og:description" content="Monitor disk io on linux server with iotop and cronRecently my server was giving notifications of disk io activity rising above a certain threshold at regular intervals. My first guess was that some c">
+<meta property="og:updated_time" content="2017-10-12T02:51:32.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Best Time to Buy and Sell Stock">
-<meta name="twitter:description" content="Best Time to Buy and Sell Stock(121)#LeetCode ProblemSay you have an array for which the ith element is the price of a given stock on day i. If you were only permitted to complete at most one transact">
+<meta name="twitter:title" content="定位I&#x2F;O问题的一种方案">
+<meta name="twitter:description" content="Monitor disk io on linux server with iotop and cronRecently my server was giving notifications of disk io activity rising above a certain threshold at regular intervals. My first guess was that some c">
 
 
 
@@ -130,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://xingchengxia.gihub.io/2017/07/11/Best-Time-to-Buy-and-Sell-Stock/"/>
+  <link rel="canonical" href="http://xingchengxia.gihub.io/2017/07/23/定位I-O问题的一种方案/"/>
 
 
 
 
 
-  <title>Best Time to Buy and Sell Stock | Let's LeetCode!</title>
+  <title>定位I/O问题的一种方案 | Let's LeetCode!</title>
   
 
 
@@ -255,7 +255,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://xingchengxia.gihub.io/2017/07/11/Best-Time-to-Buy-and-Sell-Stock/">
+    <link itemprop="mainEntityOfPage" href="http://xingchengxia.gihub.io/2017/07/23/定位I-O问题的一种方案/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xingcheng Xia">
@@ -272,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Best Time to Buy and Sell Stock</h1>
+          <h1 class="post-title" itemprop="name headline">定位I/O问题的一种方案</h1>
         
 
         <div class="post-meta">
@@ -284,8 +284,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-11T18:40:25+08:00">
-                2017-07-11
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-23T02:45:59+08:00">
+                2017-07-22
               </time>
             
 
@@ -319,22 +319,13 @@
       
 
       
-        <h1 id="Best-Time-to-Buy-and-Sell-Stock-121"><a href="#Best-Time-to-Buy-and-Sell-Stock-121" class="headerlink" title="Best Time to Buy and Sell Stock(121)"></a>Best Time to Buy and Sell Stock(121)</h1><p>#LeetCode</p>
-<h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p>Say you have an array for which the ith element is the price of a given stock on day i.</p>
-<p>If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an algorithm to find the maximum profit.</p>
-<h1 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h1><blockquote>
-<p>Input: [7, 1, 5, 3, 6, 4]  Output: 5<br>max. difference = 6-1 = 5 (not 7-1 = 6, as selling price needs to be larger than buying price)  </p>
-<p>Input: [7, 6, 4, 3, 1]  Output: 0<br>In this case, no transaction is done, i.e. max profit = 0.  </p>
-</blockquote>
-<h1 id="My-Solution"><a href="#My-Solution" class="headerlink" title="My Solution"></a>My Solution</h1><p>Basically, assign two pointers which point to head and head-&gt;next, the left one p1 aims at the smaller price, while the right one p2 moves forward to find the higher price. if p1 &gt; p2, move both pointers forward. By comparing the profit each move (when p1 &lt; p2), we can find the maximum profit.</p>
-<ul>
-<li>Time: O(n)</li>
-<li>Space: O(1)<h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2></li>
-<li>At the aspect of C, <code>int* p2 = p1+1;</code>  moves the pointer to the next element of the array. The 1 is in fact the <code>sizeof(int)</code>.  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">int maxProfit(int* prices, int pricesSize) &#123;</div><div class="line">    int i = 0;</div><div class="line">    int* p1 = prices;</div><div class="line">    int* p2 = p1+1;</div><div class="line">    int max = 0;</div><div class="line">    int profit = 0;</div><div class="line">    </div><div class="line">    if(pricesSize&lt;2)&#123;</div><div class="line">        return 0;</div><div class="line">    &#125;</div><div class="line">    while(p2 &amp;&amp; i &lt; pricesSize -1)&#123;</div><div class="line">        if(*p2 &gt; *p1)&#123;</div><div class="line">          profit = *p2 - *p1;</div><div class="line">          if(max &lt; profit)&#123;</div><div class="line">            max = profit;</div><div class="line">          &#125;   </div><div class="line">        &#125;else&#123;</div><div class="line">          p1 = p2; </div><div class="line">        &#125;   </div><div class="line">        p2 = p2+1;</div><div class="line">        i++;</div><div class="line">    &#125;</div><div class="line">    return max;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="Solution-II"><a href="#Solution-II" class="headerlink" title="Solution II"></a>Solution II</h1><p>This solution is the implement of editorial solution, which maintains one pointer to update the profit  by comparing current price to low_price.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">int maxProfit(int* prices, int pricesSize) &#123;</div><div class="line">    int max = 0;</div><div class="line">    int profit = 0;</div><div class="line">    int low_price = prices[0];</div><div class="line">    if(pricesSize&lt;2)&#123;</div><div class="line">        return 0;</div><div class="line">    &#125;</div><div class="line">    for(int i = 0; i&lt;= pricesSize -1; i++)&#123;</div><div class="line">        if(*prices &lt; low_price)&#123;</div><div class="line">            low_price = *prices;</div><div class="line">        &#125;else&#123;</div><div class="line">            profit = *prices - low_price;</div><div class="line">            if(max&lt;profit)&#123;</div><div class="line">                max=profit;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        prices = prices + 1;</div><div class="line">    &#125;</div><div class="line">    return max;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><a href="https://leetcode.com/problems/best-time-to-buy-and-sell-stock/#/description" target="_blank" rel="external">Best Time to Buy and Sell Stock - LeetCode</a></p>
+        <h1 id="Monitor-disk-io-on-linux-server-with-iotop-and-cron"><a href="#Monitor-disk-io-on-linux-server-with-iotop-and-cron" class="headerlink" title="Monitor disk io on linux server with iotop and cron"></a>Monitor disk io on linux server with iotop and cron</h1><p>Recently my server was giving notifications of disk io activity rising above a certain threshold at regular intervals. My first guess was that some cronjob task was causing that. So I tried to check various cron tasks to find out which task or process was causing the io burst. On servers specially its always a good practice to monitor resource usage to make sure that websites work fast and well.</p>
+<h2 id="Automatic-logging-via-cron"><a href="#Automatic-logging-via-cron" class="headerlink" title="Automatic logging via cron"></a>Automatic logging via cron</h2><p>Cron will run iotop in the background and record io usage details to a file that can be analysed later.</p>
+<p>Here is the basic iotop command that we want to run in the background via cron.<br><code>* * * * * root /usr/sbin/iotop -botqqqk --iter=60 | grep -P &quot;\d\d\d\d\.\d\d K/s&quot;  &gt;&gt; /var/log/iotop</code></p>
+<p>Now the most important option used in the above command is the “b” option which is for batch/non-interactive mode. In batch mode iotop will keep outputting line after line instead of showing a long list that updates automatically. This is necessary when we want to log io activity over a certain period of time.</p>
+<p>The other option called “o” will show only those processes which actually did some io activity. Otherwise iotop would show all processes. The t option adds a timestamp which adds further information if you want to track a specific high io process. The k option shows all figures in kilobytes.</p>
+<p>To log the output we simply need to redirect it to a file. The best place is /var/log and the file could be named iotop. So here is the next command<br><code>&gt;&gt; /var/log/iotop</code></p>
+<h2 id="Monitor-only-high-io-processes"><a href="#Monitor-only-high-io-processes" class="headerlink" title="Monitor only high io processes"></a>Monitor only high io processes</h2><p>Filtering result by applying <code>grep -P &quot;\d\d\d\d\.\d\d K/s</code>,thus it would not show those process that had less than 1000 K/s of disk io.</p>
 
       
     </div>
@@ -371,8 +362,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/08/Hellow-world-post-layout/" rel="next" title="Hellow_world_post_layout">
-                <i class="fa fa-chevron-left"></i> Hellow_world_post_layout
+              <a href="/2017/07/20/Memory-Leak/" rel="next" title="Memory Leak">
+                <i class="fa fa-chevron-left"></i> Memory Leak
               </a>
             
           </div>
@@ -381,8 +372,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/15/Covariance/" rel="prev" title="Covariance">
-                Covariance <i class="fa fa-chevron-right"></i>
+              <a href="/2017/08/17/Linux-I-O-Redirections/" rel="prev" title="Linux I/O Redirections">
+                Linux I/O Redirections <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -495,7 +486,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Best-Time-to-Buy-and-Sell-Stock-121"><span class="nav-number">1.</span> <span class="nav-text">Best Time to Buy and Sell Stock(121)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Problem"><span class="nav-number">2.</span> <span class="nav-text">Problem</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Example"><span class="nav-number">3.</span> <span class="nav-text">Example</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#My-Solution"><span class="nav-number">4.</span> <span class="nav-text">My Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Note"><span class="nav-number">4.1.</span> <span class="nav-text">Note</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Solution-II"><span class="nav-number">5.</span> <span class="nav-text">Solution II</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Monitor-disk-io-on-linux-server-with-iotop-and-cron"><span class="nav-number">1.</span> <span class="nav-text">Monitor disk io on linux server with iotop and cron</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Automatic-logging-via-cron"><span class="nav-number">1.1.</span> <span class="nav-text">Automatic logging via cron</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Monitor-only-high-io-processes"><span class="nav-number">1.2.</span> <span class="nav-text">Monitor only high io processes</span></a></li></ol></li></ol></div>
             
 
           </div>
