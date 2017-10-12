@@ -93,16 +93,16 @@
 
 
 
-<meta name="description" content="Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy. David LevithanWide Awake NEW: DevDocs now comes with syntax highlighting. http://devdocs.io @DevDocstw">
+<meta name="description" content="K-means聚类#lannister/machinelearning k-means算法以k为参数,把n个对象分成k个簇,使簇内具有较高的相似度,而簇间的相似度较低。其处理过程如下:1.随机选择k个点作为初始的聚类中心;2.对于剩下的点,根据其与聚类中心的距离,将其归入最近的簇3.对每个簇,计算所有点的均值作为新的聚类中心4.重复2、3直到聚类中心不再发生改变 Clustering is to">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hellow_world_post_layout">
-<meta property="og:url" content="http://xingchengxia.gihub.io/2017/07/08/Hellow-world-post-layout/index.html">
+<meta property="og:title" content="KMeans Clustering">
+<meta property="og:url" content="http://xingchengxia.gihub.io/2017/08/23/KMeans-Clustering/index.html">
 <meta property="og:site_name" content="Let&#39;s LeetCode!">
-<meta property="og:description" content="Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy. David LevithanWide Awake NEW: DevDocs now comes with syntax highlighting. http://devdocs.io @DevDocstw">
-<meta property="og:updated_time" content="2017-07-11T02:32:00.000Z">
+<meta property="og:description" content="K-means聚类#lannister/machinelearning k-means算法以k为参数,把n个对象分成k个簇,使簇内具有较高的相似度,而簇间的相似度较低。其处理过程如下:1.随机选择k个点作为初始的聚类中心;2.对于剩下的点,根据其与聚类中心的距离,将其归入最近的簇3.对每个簇,计算所有点的均值作为新的聚类中心4.重复2、3直到聚类中心不再发生改变 Clustering is to">
+<meta property="og:updated_time" content="2017-10-12T02:53:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hellow_world_post_layout">
-<meta name="twitter:description" content="Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy. David LevithanWide Awake NEW: DevDocs now comes with syntax highlighting. http://devdocs.io @DevDocstw">
+<meta name="twitter:title" content="KMeans Clustering">
+<meta name="twitter:description" content="K-means聚类#lannister/machinelearning k-means算法以k为参数,把n个对象分成k个簇,使簇内具有较高的相似度,而簇间的相似度较低。其处理过程如下:1.随机选择k个点作为初始的聚类中心;2.对于剩下的点,根据其与聚类中心的距离,将其归入最近的簇3.对每个簇,计算所有点的均值作为新的聚类中心4.重复2、3直到聚类中心不再发生改变 Clustering is to">
 
 
 
@@ -130,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://xingchengxia.gihub.io/2017/07/08/Hellow-world-post-layout/"/>
+  <link rel="canonical" href="http://xingchengxia.gihub.io/2017/08/23/KMeans-Clustering/"/>
 
 
 
 
 
-  <title>Hellow_world_post_layout | Let's LeetCode!</title>
+  <title>KMeans Clustering | Let's LeetCode!</title>
   
 
 
@@ -255,7 +255,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://xingchengxia.gihub.io/2017/07/08/Hellow-world-post-layout/">
+    <link itemprop="mainEntityOfPage" href="http://xingchengxia.gihub.io/2017/08/23/KMeans-Clustering/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Xingcheng Xia">
@@ -272,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hellow_world_post_layout</h1>
+          <h1 class="post-title" itemprop="name headline">KMeans Clustering</h1>
         
 
         <div class="post-meta">
@@ -284,8 +284,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-08T23:59:27+08:00">
-                2017-07-08
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-23T02:52:41+08:00">
+                2017-08-22
               </time>
             
 
@@ -319,12 +319,24 @@
       
 
       
-        <blockquote><p>Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.</p>
-<footer><strong>David Levithan</strong><cite>Wide Awake</cite></footer></blockquote>
-<blockquote><p>NEW: DevDocs now comes with syntax highlighting. <a href="http://devdocs.io" target="_blank" rel="external">http://devdocs.io</a></p>
-<footer><strong>@DevDocs</strong><cite><a href="https://twitter.com/devdocs/status/356095192085962752" target="_blank" rel="external">twitter.com/devdocs/status/356095192085962752</a></cite></footer></blockquote>
-<blockquote><p>Every interaction is both precious and an opportunity to delight.</p>
-<footer><strong>Seth Godin</strong><cite><a href="http://sethgodin.typepad.com/seths_blog/2009/07/welcome-to-island-marketing.html" target="_blank" rel="external">Welcome to Island Marketing</a></cite></footer></blockquote>
+        <h1 id="K-means聚类"><a href="#K-means聚类" class="headerlink" title="K-means聚类"></a>K-means聚类</h1><p>#lannister/machinelearning</p>
+<p>k-means算法以k为参数,把n个对象分成k个簇,使簇内具有较高的相似度,而簇间的相似度较低。其处理过程如下:<br>1.随机选择k个点作为初始的聚类中心;<br>2.对于剩下的点,根据其与聚类中心的距离,将其归入最近的簇<br>3.对每个簇,计算所有点的均值作为新的聚类中心<br>4.重复2、3直到聚类中心不再发生改变</p>
+<p>Clustering is to find the relations/connections between data without labels.<br>K-means is one of the most widely used algorithms.</p>
+<p>K-means for non-separated clusters(T-shirt sizing)</p>
+<ul>
+<li><p>Find closest centroids</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">K = size(centroids, 1);</div><div class="line">distance = zeros(K, 1); % to store and return the min distance</div><div class="line">idx = zeros(size(X,1), 1);</div><div class="line"></div><div class="line">for i = 1:size(X, 1)</div><div class="line">  for k = 1:K</div><div class="line">    distance(k) = sqrt(sum((X(i,:)-centroids(k,:)).^2));</div><div class="line">  end</div><div class="line">  [mini, index] = min(distance);</div><div class="line">   idx(i) = index;</div><div class="line">end</div></pre></td></tr></table></figure>
+</li>
+<li><p>Compute Means</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[m n] = size(X);</div><div class="line">centroids = zeros(K, n);</div><div class="line"></div><div class="line">for k=1:K</div><div class="line">  logic = idx==k;</div><div class="line">  centroids(k,:) = 1/sum(logic)*sum(X.*logic); </div><div class="line">  % sum(logic) is the number of examples assigned to kth centroid</div><div class="line">end</div></pre></td></tr></table></figure>
+</li>
+<li><p>Randomly initialize cluster centroids</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">centroids = zeros(K, size(X, 2));</div><div class="line">randidx = randperm(size(X, 1));</div><div class="line">% Take the first K examples as centroids</div><div class="line">centroids = X(randidx(1:K), :);</div></pre></td></tr></table></figure>
+</li>
+<li><p>K-Means Clustering on Pixels</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">% Run K-Means</div><div class="line">for i=1:max_iters</div><div class="line">    </div><div class="line">    % Output progress</div><div class="line">    fprintf(&apos;K-Means iteration %d/%d...\n&apos;, i, max_iters);</div><div class="line">    if exist(&apos;OCTAVE_VERSION&apos;)</div><div class="line">        fflush(stdout);</div><div class="line">    end</div><div class="line">    </div><div class="line">    % For each example in X, assign it to the closest centroid</div><div class="line">    idx = findClosestCentroids(X, centroids);</div><div class="line">        </div><div class="line">    % Given the memberships, compute new centroids</div><div class="line">    centroids = computeCentroids(X, idx, K);</div><div class="line">end</div></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -361,15 +373,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/08/22/MongoDB-notes/" rel="next" title="MongoDB notes">
+                <i class="fa fa-chevron-left"></i> MongoDB notes
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/07/11/Best-Time-to-Buy-and-Sell-Stock/" rel="prev" title="Best Time to Buy and Sell Stock">
-                Best Time to Buy and Sell Stock <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -417,8 +429,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -462,6 +483,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#K-means聚类"><span class="nav-number">1.</span> <span class="nav-text">K-means聚类</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
